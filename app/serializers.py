@@ -16,7 +16,7 @@ class CarSerializer(serializers.Serializer):
 
 
     def validate(self, data): # validate fields with each other
-        if data.get('minimum_price', 0) > data.get('maximum_price', 0):
+        if data.get('minimum_price', self.instance.minimum_price if self.instance else 0) > data.get('maximum_price', self.instance.maximum_price if self.instance else 0):
             error = 'maximum price should be greater than minimum price.'
             raise serializers.ValidationError(error)
 
@@ -46,6 +46,6 @@ class CarSerializer(serializers.Serializer):
             'country', instance.country
         )
 
-        instance.same()
+        instance.save()
 
         return instance
