@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView 
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.generics import get_object_or_404
+from rest_framework.generics import get_object_or_404, GenericAPIView
 
 from app.serializers import CarSerializer, CarModelSerializer
 from app.models import Car
@@ -53,3 +53,13 @@ class CarAPIView(APIView):
             return Response({'message': 'Car updated successfully!'})
 
         return Response({'message': car_serializer.errors})
+
+
+# to access this view we should login first and request our username and password with post to login/ and get the token and replace token as header of this view.
+# key = Authorization 
+# value = Token {token_we_got}
+class HelloAPIView(GenericAPIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        return Response({'message': f'Hello {request.user.username}!'})
