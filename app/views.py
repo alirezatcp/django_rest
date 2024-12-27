@@ -63,3 +63,11 @@ class HelloAPIView(GenericAPIView):
 
     def get(self, request):
         return Response({'message': f'Hello {request.user.username}!'})
+
+
+class LogoutAPIView(GenericAPIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        request.user.auth_token.delete()
+        return Response({'message': f'Bye {request.user.username}!'})
