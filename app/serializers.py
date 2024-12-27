@@ -49,3 +49,23 @@ class CarSerializer(serializers.Serializer):
         instance.save()
 
         return instance
+
+
+class CarModelSerializer(serializers.ModelSerializer): # create and update methods define in ModelSerializer
+    class Meta:
+        model = Car
+        fields = ['name', 'minimum_price', 'maximum_price', 'country']
+
+    def validate_minimum_price(self, value): # validate a single field
+        if value < 0:
+            raise serializers.ValidationError('minimum_price must be positive.')
+
+        return value
+
+
+    def validate(self, data): # validate fields with each other
+        if data.get('minimum_price', self.instance.minimum_price if self.instance else 0) > data.get('maximum_price', self.instance.maximum_price if self.instance else 0):
+            error = 'maximum price should be greater than minimum price.'
+            raise serializers.ValidationError(error)
+
+        return data

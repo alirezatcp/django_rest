@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import get_object_or_404
 
-from app.serializers import CarSerializer
+from app.serializers import CarSerializer, CarModelSerializer
 from app.models import Car
 
 @api_view(['GET', 'POST'])
@@ -30,7 +30,7 @@ class GoodBye(APIView):
 
 class AddCarAPIView(APIView):
     def post(self, request):
-        car_serializer = CarSerializer(data=request.data)
+        car_serializer = CarModelSerializer(data=request.data)
         if car_serializer.is_valid():
             car_serializer.save()
             return Response({'message': 'Car added successfully.'})
@@ -41,13 +41,13 @@ class AddCarAPIView(APIView):
 class CarAPIView(APIView):
     def get(self, request, car_id):
         car = get_object_or_404(Car, id=car_id)
-        car_serializer = CarSerializer(instance=car)
+        car_serializer = CarModelSerializer(instance=car)
         data = car_serializer.data
         return Response({'car': data})
 
     def put(self, request, car_id):
         car = get_object_or_404(Car, id=car_id)
-        car_serializer = CarSerializer(instance=car, data=request.data, partial=True) # partial=True is for that user can update partial of model too.
+        car_serializer = CarModelSerializer(instance=car, data=request.data, partial=True) # partial=True is for that user can update partial of model too.
         if car_serializer.is_valid():
             car_serializer.save()
             return Response({'message': 'Car updated successfully!'})
