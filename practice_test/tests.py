@@ -8,7 +8,7 @@ import datetime
 class PersonTests(TestCase):
     def setUp(self):
         Person.objects.create(first_name='Ali', last_name='Taghipour', birth_date= datetime.date(2000, 4, 12))
-        Person.objects.create(first_name='Maryam', last_name='Nouri', birth_date= datetime.date(1965, 11, 10))
+        Person.objects.create(first_name='Maryam', last_name='Nouri', birth_date= datetime.date(1956, 11, 10))
 
     def test_is_young(self):
         ali = Person.objects.get(first_name='Ali')
