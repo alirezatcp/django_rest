@@ -52,6 +52,9 @@ class CarSerializer(serializers.Serializer):
 
 
 class CarModelSerializer(serializers.ModelSerializer): # create and update methods define in ModelSerializer
+
+    # author = serializers.PrimaryKeyRelatedField(read_only=True) # we can add field like this
+
     class Meta:
         model = Car
         fields = ['name', 'minimum_price', 'maximum_price', 'country']
