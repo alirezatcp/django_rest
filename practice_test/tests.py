@@ -60,3 +60,14 @@ class APIViewTests(TestCase):
         response = self.client.get('/string_welcome/')
         string_data = response.content.decode('utf-8')
         self.assertEqual('welcome to our site', string_data)
+
+
+# testing code coverage:
+# to install:
+# pip install coverage
+# to get coverage value:
+# coverage run --source='.' manage.py test {app_name}
+# to see result:
+# coverage report
+# to see result as html (after this command run htmlcov/index.html in browser to see results.):
+# coverage html
