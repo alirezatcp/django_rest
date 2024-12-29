@@ -33,3 +33,18 @@ class PersonTests(TestCase):
 # start test that have their own patterns: python manage.py test --pattern="pattern"
 # start test a class: python manage.py test "class_name"
 # start test a method: python manage.py test "method_name"
+
+
+class ViewTests(TestCase):
+    # test a django view login
+    def test_login(self):
+        data = {'username': 'ali', 'password': '123'}
+        response = self.client.post('/login/', data=data)
+        self.assertEqual(response.status_code, 200)
+    
+    # test a django view
+    def test_homepage(self):
+        response = self.client.get('/homepage/')
+        self.assertTrue(b'Welcome to the homepage' in response.content) # response.content returns binary so we used b''
+
+
