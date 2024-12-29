@@ -1,0 +1,29 @@
+[
+    {
+        "model": "practice_test.person",
+        "pk": 1,
+        "fields": {
+            "first_name":"Abbas",
+            "last_name":"Azizi",
+            "birth_date":"1996-06-13"
+        }
+    },
+    {
+        "model": "practice_test.person",
+        "pk": 2,
+        "fields": {
+            "first_name":"Nazanin",
+            "last_name":"AliAbadi",
+            "birth_date":"1999-02-05"
+        }
+    },
+    {
+        "model": "practice_test.person",
+        "pk": 3,
+        "fields": {
+            "first_name":"Alireza",
+            "last_name":"Taaty",
+            "birth_date":"2002-05-25"
+        }
+    }
+]
