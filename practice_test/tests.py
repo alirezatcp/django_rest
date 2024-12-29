@@ -48,3 +48,15 @@ class ViewTests(TestCase):
         self.assertTrue(b'Welcome to the homepage' in response.content) # response.content returns binary so we used b''
 
 
+class APIViewTests(TestCase):
+    # a welcome page that returns: {'message': 'welcome to our site.'}
+    def test_welcome(self):
+        response = self.client.get('/welcome/')
+        data = response.json()
+        self.assertEqual(data.get('message'), 'welcome to our site.')
+
+    # an string welcome page that returns: 'welcome to our site'
+    def test_string_welcome(self):
+        response = self.client.get('/string_welcome/')
+        string_data = response.content.decode('utf-8')
+        self.assertEqual('welcome to our site', string_data)
