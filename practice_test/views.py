@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from django.db import transaction
 # about asyncs:
 
 from django.http import HttpResponse
@@ -24,12 +25,15 @@ async def wait_2_seconds(request):
 
 # convert sync to async:
 async def get_person1(request, first_name):
-    # multi line
-    person_get = sync_to_async(Person.objects.get)
-    person = await person_get(first_name=first_name)
 
-    # one line
-    person = await sync_to_async(Person.objects.get)(first_name=first_name)
+    # with using transaction.atomic() we see all queries inside that as one query and if one of them failed, like all of them failed.
+    with transaction.atomic():
+        # multi line
+        person_get = sync_to_async(Person.objects.get)
+        person = await person_get(first_name=first_name)
+
+        # one line
+        person = await sync_to_async(Person.objects.get)(first_name=first_name)
 
     return HttpResponse(f'person: {person}')
 
