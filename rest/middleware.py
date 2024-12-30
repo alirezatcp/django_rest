@@ -23,7 +23,7 @@ class BlacklistMiddleware:
         if client_ip in blacklist:
             return HttpResponseForbidden
 
-        response = get_response(request)
+        response = self.get_response(request)
         return response
 
 # now we should add them in MIDDLEWARE in settings.
