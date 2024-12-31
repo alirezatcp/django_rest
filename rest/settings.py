@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'app',
     'practice_test',
+    'migrations_app',
 ]
 
 MIDDLEWARE = [
