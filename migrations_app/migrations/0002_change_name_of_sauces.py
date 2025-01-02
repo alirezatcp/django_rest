@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('migrations_app', '0001_initial'),
+        ('migrations_app', '0001_initial'), # just one before migration.
     ]
 
     operations = [
