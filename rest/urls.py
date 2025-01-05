@@ -23,4 +23,5 @@ urlpatterns = [
     path('login/', obtain_auth_token),
 
     path('', include('app.urls')),
+    path('', include('about_signals.urls')),
 ]
