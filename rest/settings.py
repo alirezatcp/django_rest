@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'app',
     'practice_test',
     'migrations_app',
+
+    'about_signals.apps.AboutSignalsConfig', # to use signals we should import app like this
 ]
 
 MIDDLEWARE = [
