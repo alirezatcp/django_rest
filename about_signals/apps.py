@@ -1,6 +1,5 @@
 from django.apps import AppConfig
 
-from about_signals import signals
 
 class AboutSignalsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
@@ -8,4 +7,4 @@ class AboutSignalsConfig(AppConfig):
 
     def ready(self):
         # we should add our signals here
-        pass
+        import about_signals.signals
